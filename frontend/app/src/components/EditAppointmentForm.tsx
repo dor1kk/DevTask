@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 interface EditAppointmentFormProps {
+  id: string;
   date: string;
   service: string;
   doctor: string;
@@ -12,6 +13,7 @@ interface EditAppointmentFormProps {
 }
 
 const EditAppointmentForm: React.FC<EditAppointmentFormProps> = ({
+  id,
   date,
   service,
   doctor,
@@ -20,7 +22,7 @@ const EditAppointmentForm: React.FC<EditAppointmentFormProps> = ({
   onClose,
   onUpdate,
 }) => {
-  const [appointmentDate, setAppointmentDate] = useState(date);
+  const [appointmentDate, setAppointmentDate] = useState(date.split('T')[0]); // Ensure format yyyy-mm-dd
   const [appointmentService, setAppointmentService] = useState(service);
   const [appointmentDoctor, setAppointmentDoctor] = useState(doctor);
   const [appointmentStartTime, setAppointmentStartTime] = useState(startTime);
@@ -38,10 +40,10 @@ const EditAppointmentForm: React.FC<EditAppointmentFormProps> = ({
     };
 
     try {
-      await axios.put(`http://localhost:5000/api/bookings`, appointmentData); // Adjust the endpoint as needed
+      await axios.put(`http://localhost:5000/api/bookings/${id}`, appointmentData);
       alert('Appointment updated successfully!');
-      onUpdate(); // Notify parent to refresh the list
-      onClose(); // Close the modal
+      onUpdate(); 
+      onClose(); 
     } catch (error) {
       console.error('Error updating appointment:', error);
       alert('Failed to update appointment. Please try again.');

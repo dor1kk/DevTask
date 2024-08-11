@@ -6,11 +6,11 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../../globals.css'; 
+import '../../globals.css';
 import EditAppointmentForm from '../../components/EditAppointmentForm';
 
 interface Booking {
-  id: number;
+  id: string;
   service: string;
   doctor_name: string;
   start_time: string;
@@ -56,7 +56,7 @@ const BookingDetail: React.FC = () => {
           method: 'DELETE',
         });
         alert('Booking deleted successfully!');
-        window.location.href = '/BookingList'; // Redirect using window.location
+        window.location.href = '/BookingList'; 
       } catch (error) {
         alert('Failed to delete booking.');
       }
@@ -68,7 +68,7 @@ const BookingDetail: React.FC = () => {
   };
 
   const handleUpdate = () => {
-    fetchBooking(id as string); // Refresh the booking details
+    fetchBooking(id as string); 
     handleCloseModal();
   };
 
@@ -118,13 +118,13 @@ const BookingDetail: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-3/4 p-8 flex flex-col items-center justify-center relative bg-white bg-opacity-90 rounded-lg shadow-md">
+        <div className="w-2/4 p-8 flex flex-col items-center justify-center relative bg-white bg-opacity-90 rounded-lg shadow-md">
           <Calendar
             value={calendarDate}
             tileClassName={({ date, view }) => 
               view === 'month' && date.toDateString() === calendarDate.toDateString() ? 'bg-blue-100 text-blue-600' : null
             }
-            className="react-calendar-custom w-full h-auto" // Updated class with Tailwind classes for size
+            className="react-calendar-custom w-[600px] h-[400px]" 
           />
         </div>
 
@@ -160,6 +160,7 @@ const BookingDetail: React.FC = () => {
             doctor={booking.doctor_name}
             startTime={booking.start_time}
             endTime={booking.end_time}
+            id={booking.id}
             onClose={handleCloseModal}
             onUpdate={handleUpdate}
           />

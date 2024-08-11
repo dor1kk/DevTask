@@ -23,6 +23,16 @@ const getBookings = async (): Promise<Booking[]> => {
   return res.json();
 };
 
+const formatDate = (dateString: string): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  };
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('en-GB', options).format(date);
+};
+
 const BookingsList: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -114,7 +124,7 @@ const BookingsList: React.FC = () => {
               <div className="min-w-full bg-white">
                 {bookings.map((booking) => (
                   <div key={booking.id} className="py-2 px-4 border-b flex justify-between items-center">
-                    <span>A Booking on {booking.date} starting at {booking.start_time}</span>
+                    <span>A Booking on {formatDate(booking.date)} starting at {booking.start_time}</span>
                     <Link
                       href={`/bookings/${booking.id}`}
                       className="text-green-500 hover:text-green-700"
@@ -134,6 +144,7 @@ const BookingsList: React.FC = () => {
                 onClick={handleCloseEditModal}
               ></div>
               <EditAppointmentForm
+                id={selectedBooking.id.toString()}
                 date={selectedBooking.date}
                 service={selectedBooking.service}
                 doctor={selectedBooking.doctor_name}

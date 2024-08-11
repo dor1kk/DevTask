@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Sidebar from '@/components/Sidebar';
 import AppointmentForm from '@/components/AppointmentForm';
+import Link from 'next/link';
+
 
 const Hero: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -38,11 +40,13 @@ const Hero: React.FC = () => {
                 </p>
 
                 <div className="flex space-x-4">
-                  <button className="relative px-6 py-3 font-bold text-blue-800 bg-white rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <span className="relative z-10 font-montserrat">Learn More</span>
-                    <span className="ml-2 relative z-10">&rarr;</span>
-                    <div className="absolute inset-0 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out rounded-lg"></div>
-                  </button>
+                <Link href="/BookingList" passHref>
+  <button className="relative px-6 py-3 font-bold text-blue-800 bg-white rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <span className="relative z-10 font-montserrat">See Bookings</span>
+    <span className="ml-2 relative z-10">&rarr;</span>
+  </button>
+</Link>
+
                 </div>
               </div>
 
