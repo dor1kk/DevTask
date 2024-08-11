@@ -109,12 +109,7 @@ const BookingDetail: React.FC = () => {
             <div className="mb-2">
               <strong>Duration:</strong> 1 hour
             </div>
-            <div className="mb-2">
-              <strong>Meeting:</strong> Google Meet
-            </div>
-            <div className="mb-2">
-              <strong>Timezone:</strong> (GMT+2:00) - Europe/Berlin
-            </div>
+         
           </div>
         </div>
 
