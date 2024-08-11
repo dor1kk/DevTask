@@ -1,0 +1,36 @@
+.custom-datepicker .react-datepicker__day {
+    background-color: #E0F2FE; /* Light blue background for all days */
+    border-radius: 50%; /* Circular shape */
+    color: #1E40AF; /* Darker blue text */
+  }
+  
+  .custom-datepicker .react-datepicker__day--today {
+    background-color: #DBEAFE; /* Slightly darker blue for today */
+    color: #1E40AF; /* Darker blue text */
+  }
+  
+  .custom-datepicker .react-datepicker__day--selected {
+    background-color: #1E3A8A; /* Dark blue for selected date */
+    color: white; /* White text for selected date */
+  }
+  
+  .custom-datepicker .react-datepicker__day:hover {
+    background-color: #60A5FA; /* Lighter blue on hover */
+    color: white; /* White text on hover */
+  }
+  
+  .custom-datepicker .react-datepicker__header {
+    background-color: white; /* White background for header */
+    border-bottom: none; /* Remove bottom border */
+  }
+  
+  .custom-datepicker .react-datepicker__current-month,
+  .custom-datepicker .react-datepicker__day-names {
+    color: #1E40AF; /* Dark blue text for month and day names */
+  }
+  
+  .custom-datepicker .react-datepicker__navigation-icon {
+    filter: invert(37%) sepia(93%) saturate(751%) hue-rotate(190deg)
+      brightness(92%) contrast(93%);
+  }
+  
