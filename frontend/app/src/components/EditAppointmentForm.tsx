@@ -22,7 +22,7 @@ const EditAppointmentForm: React.FC<EditAppointmentFormProps> = ({
   onClose,
   onUpdate,
 }) => {
-  const [appointmentDate, setAppointmentDate] = useState(date.split('T')[0]); // Ensure format yyyy-mm-dd
+  const [appointmentDate, setAppointmentDate] = useState(date.split('T')[0]); 
   const [appointmentService, setAppointmentService] = useState(service);
   const [appointmentDoctor, setAppointmentDoctor] = useState(doctor);
   const [appointmentStartTime, setAppointmentStartTime] = useState(startTime);
@@ -40,7 +40,7 @@ const EditAppointmentForm: React.FC<EditAppointmentFormProps> = ({
     };
 
     try {
-      await axios.put(`http://localhost:5000/api/bookings/${id}`, appointmentData);
+      await axios.put(`http://host.docker.internal:5000/api/bookings/${id}`, appointmentData);
       alert('Appointment updated successfully!');
       onUpdate(); 
       onClose(); 

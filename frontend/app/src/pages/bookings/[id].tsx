@@ -33,7 +33,7 @@ const BookingDetail: React.FC = () => {
 
   const fetchBooking = async (id: string) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${id}`);
+      const res = await fetch(`http://host.docker.internal:5000/api/bookings/${id}`);
       if (res.ok) {
         const bookingData = await res.json();
         setBooking(bookingData);
@@ -52,7 +52,7 @@ const BookingDetail: React.FC = () => {
   const handleDelete = async () => {
     if (confirm('Are you sure you want to delete this booking?')) {
       try {
-        await fetch(`http://localhost:5000/api/bookings/${booking?.id}`, {
+        await fetch(`http://host.docker.internal:5000/api/bookings/${booking?.id}`, {
           method: 'DELETE',
         });
         alert('Booking deleted successfully!');

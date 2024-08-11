@@ -16,7 +16,7 @@ interface Booking {
 }
 
 const getBookings = async (): Promise<Booking[]> => {
-  const res = await fetch('http://localhost:5000/api/bookings', { cache: 'no-store' });
+  const res = await fetch('http://host.docker.internal:5000/api/bookings', { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }

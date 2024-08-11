@@ -32,7 +32,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
     };
 
     try {
-      const url = 'http://localhost:5000/api/bookings';
+      const url = 'http://host.docker.internal:5000/api/bookings';
       await axios.post(url, appointmentData);
       toast.success(isAddForm ? 'Appointment added successfully!' : 'Appointment booked successfully!');
       if (isAddForm) {
