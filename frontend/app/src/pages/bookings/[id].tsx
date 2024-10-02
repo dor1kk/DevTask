@@ -25,6 +25,8 @@ const BookingDetail: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/bookings"; // Use your .env variable here
+
   useEffect(() => {
     if (id) {
       fetchBooking(id as string);
@@ -33,7 +35,7 @@ const BookingDetail: React.FC = () => {
 
   const fetchBooking = async (id: string) => {
     try {
-      const res = await fetch(`http://host.docker.internal:5000/api/bookings/${id}`);
+      const res = await fetch(`${apiUrl}/${id}`); // Updated to use apiUrl
       if (res.ok) {
         const bookingData = await res.json();
         setBooking(bookingData);
@@ -52,7 +54,7 @@ const BookingDetail: React.FC = () => {
   const handleDelete = async () => {
     if (confirm('Are you sure you want to delete this booking?')) {
       try {
-        await fetch(`http://host.docker.internal:5000/api/bookings/${booking?.id}`, {
+        await fetch(`${apiUrl}/${booking?.id}`, {
           method: 'DELETE',
         });
         alert('Booking deleted successfully!');
@@ -109,7 +111,6 @@ const BookingDetail: React.FC = () => {
             <div className="mb-2">
               <strong>Duration:</strong> 1 hour
             </div>
-         
           </div>
         </div>
 

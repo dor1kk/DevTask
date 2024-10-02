@@ -28,6 +28,8 @@ const EditAppointmentForm: React.FC<EditAppointmentFormProps> = ({
   const [appointmentStartTime, setAppointmentStartTime] = useState(startTime);
   const [appointmentEndTime, setAppointmentEndTime] = useState(endTime);
 
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/bookings';
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -40,7 +42,7 @@ const EditAppointmentForm: React.FC<EditAppointmentFormProps> = ({
     };
 
     try {
-      await axios.put(`http://host.docker.internal:5000/api/bookings/${id}`, appointmentData);
+      await axios.put(`${apiUrl}/${id}`, appointmentData);
       alert('Appointment updated successfully!');
       onUpdate(); 
       onClose(); 

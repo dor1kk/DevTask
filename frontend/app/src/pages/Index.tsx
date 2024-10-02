@@ -6,7 +6,7 @@ import AppointmentForm from '@/components/AppointmentForm';
 import Link from 'next/link';
 
 
-const Hero: React.FC = () => {
+const Index: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   return (
@@ -59,4 +59,4 @@ const Hero: React.FC = () => {
   );
 };
 
-export default Hero;
+export default Index;

@@ -20,8 +20,20 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
+  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000/api/bookings";
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    const selectedDate = new Date(date);
+    const currentDate = new Date();
+
+    currentDate.setHours(0, 0, 0, 0);
+
+    if (selectedDate < currentDate) {
+      toast.error('You cannot book an appointment on a date that has already passed.');
+      return; 
+    }
 
     const appointmentData = {
       date,
@@ -32,19 +44,19 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
     };
 
     try {
-      const url = 'http://host.docker.internal:5000/api/bookings';
-      await axios.post(url, appointmentData);
+      await axios.post(apiUrl, appointmentData);
       toast.success(isAddForm ? 'Appointment added successfully!' : 'Appointment booked successfully!');
+
       if (isAddForm) {
-        onUpdate && onUpdate(); 
-        onClose && onClose(); 
+        onUpdate && onUpdate();
+        onClose && onClose();
       } else {
         setDate('');
         setService('Consultation');
         setDoctor('Dr. John Doe');
         setStartTime('');
         setEndTime('');
-        window.location.href = '/BookingList'; 
+        window.location.href = '/BookingList';
       }
     } catch (error) {
       console.error('Error:', error);

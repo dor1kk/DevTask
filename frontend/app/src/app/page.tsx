@@ -1,11 +1,11 @@
 
-import Hero from '@/pages/Hero';
+import Index from '@/pages/Index';
 import React from 'react';
 
 const Home: React.FC = () => {
   return (
     <div>
-      <Hero />
+      <Index />
     </div>
   );
 };
