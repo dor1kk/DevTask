@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import { FaArrowLeft, FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
@@ -10,7 +8,7 @@ import '../../globals.css';
 import EditAppointmentForm from '../../components/EditAppointmentForm';
 
 interface Booking {
-  id: string;
+  id: number;  
   service: string;
   doctor_name: string;
   start_time: string;
@@ -25,17 +23,17 @@ const BookingDetail: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/bookings"; // Use your .env variable here
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/bookings"; 
 
   useEffect(() => {
     if (id) {
-      fetchBooking(id as string);
+      fetchBooking(Number(id));  
     }
   }, [id]);
 
-  const fetchBooking = async (id: string) => {
+  const fetchBooking = async (id: number) => {  
     try {
-      const res = await fetch(`${apiUrl}/${id}`); // Updated to use apiUrl
+      const res = await fetch(`${apiUrl}/${id}`);
       if (res.ok) {
         const bookingData = await res.json();
         setBooking(bookingData);
@@ -70,7 +68,7 @@ const BookingDetail: React.FC = () => {
   };
 
   const handleUpdate = () => {
-    fetchBooking(id as string); 
+    fetchBooking(Number(id));  // Convert id to number here
     handleCloseModal();
   };
 
@@ -156,7 +154,7 @@ const BookingDetail: React.FC = () => {
             doctor={booking.doctor_name}
             startTime={booking.start_time}
             endTime={booking.end_time}
-            id={booking.id}
+            id={booking.id} 
             onClose={handleCloseModal}
             onUpdate={handleUpdate}
           />

@@ -20,6 +20,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
+
   const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000/api/bookings";
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -27,7 +28,6 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
 
     const selectedDate = new Date(date);
     const currentDate = new Date();
-
     currentDate.setHours(0, 0, 0, 0);
 
     if (selectedDate < currentDate) {
@@ -35,6 +35,32 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
       return; 
     }
 
+    const now = new Date();
+    const startDateeTime = new Date(selectedDate); 
+    
+    const [hours, minutes] = startTime.split(':'); 
+    const startDateTimeWithTime = new Date(startDateeTime.setHours(Number(hours), Number(minutes)));
+    
+    if (selectedDate.toDateString() === now.toDateString() && startDateTimeWithTime <= now) {
+        toast.error('You cannot book an appointment in the past.');
+        return; 
+    }
+    
+
+    const [startHour, startMinute] = startTime.split(':').map(Number);
+    const [endHour, endMinute] = endTime.split(':').map(Number);
+
+    const startDateTime = new Date(selectedDate);
+    startDateTime.setHours(startHour, startMinute);
+
+    const endDateTime = new Date(selectedDate);
+    endDateTime.setHours(endHour, endMinute);
+
+    if (endDateTime <= startDateTime) {
+      toast.error('End time must be after start time.');
+      return; 
+    }
+    
     const appointmentData = {
       date,
       service,

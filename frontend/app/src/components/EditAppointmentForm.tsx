@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 interface EditAppointmentFormProps {
-  id: string;
+  id: number;
   date: string;
   service: string;
   doctor: string;

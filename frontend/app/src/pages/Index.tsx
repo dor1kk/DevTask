@@ -41,11 +41,11 @@ const Index: React.FC = () => {
 
                 <div className="flex space-x-4">
                 <Link href="/BookingList" passHref>
-  <button className="relative px-6 py-3 font-bold text-blue-800 bg-white rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500">
-    <span className="relative z-10 font-montserrat">See Bookings</span>
-    <span className="ml-2 relative z-10">&rarr;</span>
-  </button>
-</Link>
+                <button className="relative px-6 py-3 font-bold text-blue-800 bg-white rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <span className="relative z-10 font-montserrat">See Bookings</span>
+                <span className="ml-2 relative z-10">&rarr;</span>
+                </button>
+                </Link>
 
                 </div>
               </div>

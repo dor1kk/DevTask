@@ -146,16 +146,17 @@ const BookingsList: React.FC = () => {
                 className="fixed inset-0 bg-black opacity-50"
                 onClick={handleCloseEditModal}
               ></div>
-              <EditAppointmentForm
-                id={selectedBooking.id.toString()}
-                date={selectedBooking.date}
-                service={selectedBooking.service}
-                doctor={selectedBooking.doctor_name}
-                startTime={selectedBooking.start_time}
-                endTime={selectedBooking.end_time}
-                onClose={handleCloseEditModal}
-                onUpdate={handleUpdate}
+             <EditAppointmentForm
+              id={Number(selectedBooking.id)} 
+              date={selectedBooking.date}
+              service={selectedBooking.service}
+              doctor={selectedBooking.doctor_name}
+              startTime={selectedBooking.start_time}
+              endTime={selectedBooking.end_time}
+              onClose={handleCloseEditModal}
+              onUpdate={handleUpdate}
               />
+
             </div>
           )}
 
